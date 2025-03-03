@@ -1,62 +1,35 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
+var states = []struct {
+	input string
+}{
+	{input: "solid"},
+	{input: "liquid"},
+	{input: "gas"},
+	{input: "plasma"},
+}
 
-func BenchmarkIfElseFnSolidState(b *testing.B) {
-	var state = "solid"
-	for i := 0; i < b.N; i++ {
-		ifElseFn(state)
+func BenchmarkIfElseFunc(b *testing.B) {
+	for _, v := range states {
+		b.Run(fmt.Sprintf("input_size_%s", v.input), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				ifElseFn(v.input)
+			}
+		})
 	}
 }
 
-func BenchmarkSwitchFnSolidState(b *testing.B) {
-	var state = "solid"
-	for i := 0; i < b.N; i++ {
-		switchFn(state)
-	}
-}
-
-func BenchmarkIfElseFnLiquidState(b *testing.B) {
-	var state = "liquid"
-	for i := 0; i < b.N; i++ {
-		ifElseFn(state)
-	}
-}
-
-func BenchmarkSwitchFnLiquidState(b *testing.B) {
-	var state = "liquid"
-	for i := 0; i < b.N; i++ {
-		switchFn(state)
-	}
-}
-
-func BenchmarkIfElseFnGasState(b *testing.B) {
-	var state = "gas"
-	for i := 0; i < b.N; i++ {
-		ifElseFn(state)
-	}
-}
-
-func BenchmarkSwitchFnGasState(b *testing.B) {
-	var state = "gas"
-	for i := 0; i < b.N; i++ {
-		switchFn(state)
-	}
-}
-
-func BenchmarkIfElseFnPlasmaState(b *testing.B) {
-	var state = "plasma"
-	for i := 0; i < b.N; i++ {
-		ifElseFn(state)
-	}
-}
-
-func BenchmarkSwitchFnPlasmaState(b *testing.B) {
-	var state = "plasma"
-	for i := 0; i < b.N; i++ {
-		switchFn(state)
+func BenchmarkSwitchFunc(b *testing.B) {
+	for _, v := range states {
+		b.Run(fmt.Sprintf("input_size_%s", v.input), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				switchFn(v.input)
+			}
+		})
 	}
 }
