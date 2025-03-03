@@ -27,3 +27,22 @@ BenchmarkSwitchFunc/input_size_plasma-11        	96402320	        11.51 ns/op
 PASS
 ok  	github.com/pranoyk/go-switch-if-else	9.932s
 ```
+
+go test with memory allocation - `go test -bench=. -benchmem`
+Output -
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/pranoyk/go-switch-if-else
+cpu: Apple M3 Pro
+BenchmarkIfElseFunc/input_size_solid-11         	107347539	        11.28 ns/op	       8 B/op	       1 allocs/op
+BenchmarkIfElseFunc/input_size_liquid-11        	92172976	        11.23 ns/op	       8 B/op	       1 allocs/op
+BenchmarkIfElseFunc/input_size_gas-11           	98018858	        11.57 ns/op	       8 B/op	       1 allocs/op
+BenchmarkIfElseFunc/input_size_plasma-11        	97315376	        11.69 ns/op	       8 B/op	       1 allocs/op
+BenchmarkSwitchFunc/input_size_solid-11         	100000000	        11.25 ns/op	       8 B/op	       1 allocs/op
+BenchmarkSwitchFunc/input_size_liquid-11        	99550635	        11.53 ns/op	       8 B/op	       1 allocs/op
+BenchmarkSwitchFunc/input_size_gas-11           	100000000	        11.11 ns/op	       8 B/op	       1 allocs/op
+BenchmarkSwitchFunc/input_size_plasma-11        	90286374	        11.68 ns/op	       8 B/op	       1 allocs/op
+PASS
+ok  	github.com/pranoyk/go-switch-if-else	9.812s
+```
